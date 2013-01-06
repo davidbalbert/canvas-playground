@@ -22,7 +22,7 @@ function draw() {
     ctx.restore();
   }
 
-  pacman(ctx, 150.5, 370.5, 25, Math.PI / 3, true);
+  pacman(ctx, 150.5, 370.5, 25, Math.PI / 3, false);
 }
 
 function pacman(ctx, x, y, radius, angle, leftFacing) {
