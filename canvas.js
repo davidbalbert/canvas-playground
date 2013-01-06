@@ -21,6 +21,20 @@ function draw() {
     squareWithRotation(ctx, 0, 0, 50, 0);
     ctx.restore();
   }
+
+  pacman(ctx, 150.5, 370.5, 25, Math.PI / 3, "left");
+}
+
+function pacman(ctx, x, y, radius, angle, left) {
+  ctx.beginPath();
+  ctx.arc(x, y, radius, angle / 2, Math.PI * 2 - angle / 2, false);
+  ctx.lineTo(x, y);
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.rotate(angle / 2);
+  ctx.lineTo(radius, 0);
+  ctx.restore();
+  ctx.stroke();
 }
 
 function squareWithRotation(ctx, x, y, side, angle) {
@@ -59,9 +73,7 @@ function roundRect2(ctx, x, y, width, height, radius) {
   ctx.beginPath();
   ctx.moveTo(x + radius, y);
   ctx.lineTo(x + width - radius, y);
-  ctx.moveTo(x + width, y + radius);
-  ctx.arc(x + width - radius, y + radius, radius, 0, Math.PI * 1.5, true);
-  ctx.moveTo(x + width, y + radius);
+  ctx.arc(x + width - radius, y + radius, radius, Math.PI * 1.5, Math.PI * 2, false);
   ctx.lineTo(x + width, y + height - radius);
   ctx.arc(x + width - radius, y + height - radius, radius, 0, Math.PI * 0.5, false);
   ctx.lineTo(x + radius, y + height);
