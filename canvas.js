@@ -22,16 +22,26 @@ function draw() {
     ctx.restore();
   }
 
-  pacman(ctx, 150.5, 370.5, 25, Math.PI / 3, "left");
+  pacman(ctx, 150.5, 370.5, 25, Math.PI / 3, true);
 }
 
-function pacman(ctx, x, y, radius, angle, left) {
+function pacman(ctx, x, y, radius, angle, leftFacing) {
+  if (leftFacing) {
+    var start = Math.PI - angle / 2;
+    var end = Math.PI + angle / 2;
+    var counterClockwise = true;
+  } else {
+    var start = angle / 2;
+    var end = Math.PI * 2 - angle / 2;
+    var counterClockwise = false;
+  }
+
   ctx.beginPath();
-  ctx.arc(x, y, radius, angle / 2, Math.PI * 2 - angle / 2, false);
+  ctx.arc(x, y, radius, start, end, counterClockwise);
   ctx.lineTo(x, y);
   ctx.save();
   ctx.translate(x, y);
-  ctx.rotate(angle / 2);
+  ctx.rotate(start);
   ctx.lineTo(radius, 0);
   ctx.restore();
   ctx.stroke();
