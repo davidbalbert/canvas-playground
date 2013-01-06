@@ -2,18 +2,25 @@ function draw() {
   var canvas = document.getElementById("c");
   var ctx = canvas.getContext("2d");
 
-  roundRect2(ctx, 25, 25, 100, 50, 0);
-  roundRect2(ctx, 25, 100, 100, 50, 15);
-  roundRect2(ctx, 25, 175, 100, 50, 25);
+  roundRect2(ctx, 25.5, 25.5, 100, 50, 0);
+  roundRect2(ctx, 25.5, 100.5, 100, 50, 15);
+  roundRect2(ctx, 25.5, 175.5, 100, 50, 25);
 
-  roundRect2(ctx, 25, 250, 50, 50, 25);
+  roundRect2(ctx, 25.5, 250.5, 50, 50, 25);
 
-  /*
   for (var i = 0; i < 16; i++) {
-    squareWithRotation(ctx, 50, 50, 200, Math.PI / 32 * i);
+    squareWithRotation(ctx, 200.5, 50.5, 200, Math.PI / 32 * i);
   }
-  */
 
+  squareWithRotation(ctx, 400.5, 400.5, 50, 0);
+
+  for (i = 0; i < 32; i++) {
+    ctx.save();
+    ctx.translate(300.5, 370.5);
+    ctx.rotate(Math.PI / 16 * i);
+    squareWithRotation(ctx, 0, 0, 50, 0);
+    ctx.restore();
+  }
 }
 
 function squareWithRotation(ctx, x, y, side, angle) {
