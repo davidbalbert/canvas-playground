@@ -22,7 +22,25 @@ function draw() {
     ctx.restore();
   }
 
-  pacman(ctx, 150.5, 370.5, 25, Math.PI / 3, false);
+  pacman(ctx, 150.5, 370.5, 24, Math.PI / 3, false);
+  ghost(ctx, 50.5, 370.5);
+}
+
+function ghost(ctx, x, y) {
+  var radius = 24;
+  var dX = radius * 2 / 6;
+
+  ctx.beginPath();
+  ctx.arc(x, y, radius, Math.PI, Math.PI * 2, false);
+  ctx.lineTo(x + radius, y + radius);
+  ctx.moveTo(x - radius, y);
+  ctx.lineTo(x - radius, y + radius);
+
+  for (var i = 1; i < 7; i++) {
+    var height = i % 2 == 0 ? y + radius : y + radius - 10;
+    ctx.lineTo(x - radius + i * dX, height);
+  }
+  ctx.stroke();
 }
 
 function pacman(ctx, x, y, radius, angle, leftFacing) {
