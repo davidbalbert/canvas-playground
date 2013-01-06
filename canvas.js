@@ -2,33 +2,72 @@ function draw() {
   var canvas = document.getElementById("c");
   var ctx = canvas.getContext("2d");
 
+  /*
   ctx.save();
   ctx.translate(50, 25);
   ctx.rotate(Math.PI / 4);
   roundRect(ctx, 0, 0, 50, 50, 0);
   ctx.restore();
+  */
 
   /*
-  roundRect2(ctx, 25, 25, 100, 50, 0);
-  roundRect2(ctx, 25, 100, 100, 50, 15);
-  roundRect2(ctx, 25, 175, 100, 50, 25);
+  roundRect(ctx, 25, 25, 100, 50, 0);
+  roundRect(ctx, 25, 100, 100, 50, 15);
+  roundRect(ctx, 25, 175, 100, 50, 25);
 
-  roundRect2(ctx, 25, 250, 50, 50, 25);
+  roundRect(ctx, 25, 250, 50, 50, 25);
   */
+
+  for (var i = 0; i < 16; i++) {
+    squareWithRotation2(ctx, 50, 50, 200, Math.PI / 32 * i);
+  }
+
+}
+
+function squareWithRotation2(ctx, x, y, side, angle) {
+  ctx.save();
+  ctx.translate(x + side / 2, y + side / 2);
+  ctx.rotate(angle);
+  ctx.translate(-1 * side/2, -1 * side/2);
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.lineTo(side, 0);
+  ctx.lineTo(side, side);
+  ctx.lineTo(0, side);
+  ctx.lineTo(0, 0);
+  ctx.stroke();
+  ctx.restore();
+}
+
+function squareWithRotation(ctx, x, y, side, angle) {
+  ctx.save();
+  ctx.translate(x + side / 2, y + side / 2);
+  ctx.rotate(angle);
+  ctx.beginPath();
+  ctx.moveTo(-side / 2, -side / 2);
+  ctx.lineTo(side / 2, - side / 2);
+  ctx.lineTo(side / 2, side / 2);
+  ctx.lineTo(- side / 2, side / 2);
+  ctx.lineTo(- side / 2, - side / 2);
+  ctx.stroke();
+  ctx.restore();
 }
 
 function roundRect(ctx, x, y, width, height, radius) {
+  ctx.save();
+  ctx.translate(x, y);
   ctx.beginPath();
-  ctx.moveTo(x + radius, y);
-  ctx.lineTo(x + width - radius, y);
-  ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
-  ctx.lineTo(x + width, y + height - radius);
-  ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
-  ctx.lineTo(x + radius, y + height);
-  ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
-  ctx.lineTo(x, y + radius);
-  ctx.quadraticCurveTo(x, y, x + radius, y);
+  ctx.moveTo(radius, 0);
+  ctx.lineTo(width - radius, 0);
+  ctx.quadraticCurveTo(width, 0, width, radius);
+  ctx.lineTo(width, height - radius);
+  ctx.quadraticCurveTo(width, height, width - radius, height);
+  ctx.lineTo(radius, height);
+  ctx.quadraticCurveTo(0, height, 0, height - radius);
+  ctx.lineTo(0, radius);
+  ctx.quadraticCurveTo(0, 0, radius, 0);
   ctx.stroke();
+  ctx.restore();
 }
 
 function roundRect2(ctx, x, y, width, height, radius) {
