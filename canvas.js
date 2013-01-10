@@ -23,12 +23,12 @@ function draw() {
   }
 
   pacman(ctx, 150.5, 370.5, 24, Math.PI / 3, false);
-  ghost(ctx, 50.5, 370.5);
+  ghost(ctx, 50.5, 370.5, 24);
 }
 
-function ghost(ctx, x, y) {
-  var radius = 24;
+function ghost(ctx, x, y, radius) {
   var dX = radius * 2 / 6;
+  var dY = radius / 2.4;
 
   ctx.beginPath();
   ctx.arc(x, y, radius, Math.PI, Math.PI * 2, false);
@@ -37,7 +37,7 @@ function ghost(ctx, x, y) {
   ctx.lineTo(x - radius, y + radius);
 
   for (var i = 1; i < 7; i++) {
-    var height = i % 2 == 0 ? y + radius : y + radius - 10;
+    var height = i % 2 == 0 ? y + radius : y + radius - dY;
     ctx.lineTo(x - radius + i * dX, height);
   }
   ctx.stroke();
